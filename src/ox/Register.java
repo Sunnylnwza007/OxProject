@@ -4,14 +4,38 @@
  * and open the template in the editor.
  */
 package ox;
+import com.mongodb.BasicDBObject;
+import java.net.UnknownHostException;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.ServerAddress;
+
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
+
+import org.bson.Document;
+import java.util.Arrays;
+import com.mongodb.Block;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+
+import com.mongodb.client.MongoCursor;
+import static com.mongodb.client.model.Filters.*;
+import com.mongodb.client.result.DeleteResult;
+import static com.mongodb.client.model.Updates.*;
+import com.mongodb.client.result.UpdateResult;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Jutamas_Soiraya
  */
 public class Register extends javax.swing.JFrame {
-
-    
+    MongoClientURI uri  = new MongoClientURI("mongodb://suns0001:password1@ds245532.mlab.com:45532/testdb1"); 
+    MongoClient client = new MongoClient(uri);
+    MongoDatabase db = client.getDatabase(uri.getDatabase());
+     BasicDBObject insert  = new BasicDBObject();
     /**
      * Creates new form Register
      */
@@ -35,10 +59,10 @@ public class Register extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        user = new javax.swing.JTextField();
+        pass = new javax.swing.JTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
+        pass2 = new javax.swing.JPasswordField();
         jToggleButton2 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -71,33 +95,22 @@ public class Register extends javax.swing.JFrame {
         jLabel5.setText("Password :");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                userActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 240, 40));
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 320, 40));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                passActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 320, 40));
-
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 320, 40));
+        getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 320, 40));
 
         jToggleButton1.setBackground(new java.awt.Color(255, 51, 51));
         jToggleButton1.setFont(new java.awt.Font("SanamDeklenchaya", 1, 18)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton1.setText("Cancel");
         jToggleButton1.setPreferredSize(new java.awt.Dimension(94, 48));
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,9 +120,15 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 100, -1));
 
+        pass2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pass2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 240, 40));
+
         jToggleButton2.setBackground(new java.awt.Color(0, 204, 0));
         jToggleButton2.setFont(new java.awt.Font("SanamDeklenchaya", 1, 18)); // NOI18N
-        jToggleButton2.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton2.setText("Confirm");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,17 +143,13 @@ public class Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_userActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_passActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         setVisible(false);
@@ -142,10 +157,26 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        if (pass.getText().equals(pass2.getText()) && (
+                !user.getText().equals("") && !pass.getText().equals(""))){
+        insert.put("username", user.getText().toString());
+        insert.put("password", pass.getText().toString());
+        MongoCollection<Document> songs = db.getCollection("test1");
+        List<Document> seedData = new ArrayList<Document>();
+        seedData.add(new Document("username", user.getText().toString()).append("password", pass.getText().toString()));
+        songs.insertMany(seedData);
         setVisible(false);
         new Lobby().show();
+        }else{
+            
+        }
+      
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void pass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pass2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,10 +219,10 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JTextField pass;
+    private javax.swing.JPasswordField pass2;
+    private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }

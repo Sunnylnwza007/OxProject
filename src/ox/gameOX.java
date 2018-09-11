@@ -73,7 +73,6 @@ public class gameOX extends javax.swing.JFrame {
 
         jToggleButton4.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton4.setFont(new java.awt.Font("SanamDeklenchaya", 1, 14)); // NOI18N
-        jToggleButton4.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton4.setText("Back");
         jToggleButton4.setPreferredSize(new java.awt.Dimension(90, 32));
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +84,6 @@ public class gameOX extends javax.swing.JFrame {
 
         jToggleButton1.setBackground(new java.awt.Color(51, 204, 0));
         jToggleButton1.setFont(new java.awt.Font("SanamDeklenchaya", 1, 14)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton1.setText("Ready");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +94,6 @@ public class gameOX extends javax.swing.JFrame {
 
         jToggleButton2.setBackground(new java.awt.Color(51, 204, 0));
         jToggleButton2.setFont(new java.awt.Font("SanamDeklenchaya", 1, 14)); // NOI18N
-        jToggleButton2.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton2.setText("Ready");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
