@@ -5,12 +5,18 @@
  */
 package ox;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoDatabase;
+
 /**
  *
  * @author Jutamas_Soiraya
  */
 public class Login extends javax.swing.JFrame {
-
+   
+    OX ox = new OX();
     /**
      * Creates new form Login
      */
@@ -32,8 +38,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        pass = new javax.swing.JTextField();
+        user = new javax.swing.JTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
@@ -59,20 +65,19 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Password :");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 270, -1, -1));
 
-        jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 268, 313, 42));
+        pass.setCaretColor(new java.awt.Color(255, 255, 255));
+        getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 268, 313, 42));
 
-        jTextField2.setCaretColor(new java.awt.Color(255, 255, 255));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        user.setCaretColor(new java.awt.Color(255, 255, 255));
+        user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                userActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 164, 313, 42));
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 164, 313, 42));
 
         jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setFont(new java.awt.Font("SanamDeklenchaya", 1, 14)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton1.setText("Login");
         jToggleButton1.setPreferredSize(new java.awt.Dimension(90, 32));
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +89,6 @@ public class Login extends javax.swing.JFrame {
 
         jToggleButton2.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton2.setFont(new java.awt.Font("SanamDeklenchaya", 1, 14)); // NOI18N
-        jToggleButton2.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton2.setText("Register");
         jToggleButton2.setPreferredSize(new java.awt.Dimension(90, 32));
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,9 +105,9 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_userActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         setVisible(false);
@@ -111,8 +115,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        setVisible(false);
-        new Lobby().show();
+        if (ox.checkUser(user.getText(), pass.getText())){
+            setVisible(false);
+            new Lobby().show();
+        }else{
+            
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
@@ -155,9 +163,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JTextField pass;
+    private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }

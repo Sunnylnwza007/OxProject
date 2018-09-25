@@ -20,6 +20,7 @@ import java.util.Arrays;
 import com.mongodb.Block;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 
 import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
@@ -34,14 +35,53 @@ import java.util.List;
  * @author Jutamas_Soiraya
  */
 public class OX {
-MongoClientURI uri  = new MongoClientURI("mongodb://suns0001:password1@ds245532.mlab.com:45532/testdb1"); 
+
+    MongoClientURI uri  = new MongoClientURI("mongodb://suns0001:password1@ds245532.mlab.com:45532/testdb1"); 
     MongoClient client = new MongoClient(uri);
     MongoDatabase db = client.getDatabase(uri.getDatabase());
+    BasicDBObject insert  = new BasicDBObject();
+    String user;
+    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public boolean insertUser(String user,String pass,String pass2){
+        if ((pass).equals(pass2) && (
+            !user.equals("") && !pass.equals(""))){
+            insert.put("username", user);
+            insert.put("password", pass);
+            MongoCollection<Document> songs = db.getCollection("test1");
+            List<Document> seedData = new ArrayList<Document>();
+            seedData.add(new Document("username", user).append("password", pass));
+            songs.insertMany(seedData);
+            return true;
+        }else{
+            return false; 
+        }
+        
     }
+    
+    public boolean checkUser(String user,String password){
+        int count = 0;
+        MongoCollection<Document> songs = db.getCollection("test1");
+        Document findU = new Document("username",user).append("password", password);
+        MongoCursor<Document> cursor = songs.find(findU).iterator();
+          try {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+                user = user;
+                count++;
+            }
+        } finally {
+            
+        }
+        if (count>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     
 }

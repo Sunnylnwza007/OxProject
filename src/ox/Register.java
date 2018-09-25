@@ -36,6 +36,7 @@ public class Register extends javax.swing.JFrame {
     MongoClient client = new MongoClient(uri);
     MongoDatabase db = client.getDatabase(uri.getDatabase());
      BasicDBObject insert  = new BasicDBObject();
+     OX ox = new OX();
     /**
      * Creates new form Register
      */
@@ -157,7 +158,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        if (pass.getText().equals(pass2.getText()) && (
+        /*if (pass.getText().equals(pass2.getText()) && (
                 !user.getText().equals("") && !pass.getText().equals(""))){
         insert.put("username", user.getText().toString());
         insert.put("password", pass.getText().toString());
@@ -167,10 +168,12 @@ public class Register extends javax.swing.JFrame {
         songs.insertMany(seedData);
         setVisible(false);
         new Lobby().show();
-        }else{
-            
-        }
-      
+        }else{    
+        }*/
+      if (ox.insertUser(user.getText(), pass.getText(), pass2.getText())){
+        setVisible(false);
+        new Lobby().show();
+      }
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
