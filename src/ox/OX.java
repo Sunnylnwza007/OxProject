@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class OX {
 
-    MongoClientURI uri  = new MongoClientURI("mongodb://suns0001:password1@ds245532.mlab.com:45532/testdb1"); 
+    MongoClientURI uri  = new MongoClientURI("mongodb://user01:user01@ds243212.mlab.com:43212/ox-project"); 
     MongoClient client = new MongoClient(uri);
     MongoDatabase db = client.getDatabase(uri.getDatabase());
     BasicDBObject insert  = new BasicDBObject();
@@ -51,7 +51,7 @@ public class OX {
             !user.equals("") && !pass.equals(""))){
             insert.put("username", user);
             insert.put("password", pass);
-            MongoCollection<Document> songs = db.getCollection("test1");
+            MongoCollection<Document> songs = db.getCollection("user");
             List<Document> seedData = new ArrayList<Document>();
             seedData.add(new Document("username", user).append("password", pass));
             songs.insertMany(seedData);
@@ -64,7 +64,7 @@ public class OX {
     
     public boolean checkUser(String user,String password){
         int count = 0;
-        MongoCollection<Document> songs = db.getCollection("test1");
+        MongoCollection<Document> songs = db.getCollection("user");
         Document findU = new Document("username",user).append("password", password);
         MongoCursor<Document> cursor = songs.find(findU).iterator();
           try {
