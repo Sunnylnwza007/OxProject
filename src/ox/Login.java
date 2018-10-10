@@ -9,6 +9,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -115,11 +116,26 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        if (ox.checkUser(user.getText(), pass.getText())){
+        String sumUsername = new String(user.getText());
+        String sumPassword = new String(pass.getText());
+        
+        if ( sumUsername.length()<5||sumUsername.length() > 16 ) {
+            JOptionPane.showMessageDialog(null,"Username or Password fail!!!");
+            user.setText(" ");
+            pass.setText(" ");
+            
+        } else if ( user.getText().equals(" ") || pass.getText().equals(" ") ) {
+            JOptionPane.showMessageDialog(null,"Username or Password fail!!!");
+            user.setText(" ");
+            pass.setText(" ");
+            
+        } else if (ox.checkUser(user.getText(), pass.getText())){
             setVisible(false);
             new Lobby().show();
-        }else{
-            
+        } else {
+            JOptionPane.showMessageDialog(null,"Username or Password fail!!!");
+            user.setText(" ");
+            pass.setText(" ");
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

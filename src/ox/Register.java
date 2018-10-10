@@ -27,6 +27,7 @@ import static com.mongodb.client.model.Updates.*;
 import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 /**
  *
  * @author Jutamas_Soiraya
@@ -37,6 +38,7 @@ public class Register extends javax.swing.JFrame {
     MongoDatabase db = client.getDatabase(uri.getDatabase());
      BasicDBObject insert  = new BasicDBObject();
      OX ox = new OX();
+     classRegister regis = new classRegister();
     /**
      * Creates new form Register
      */
@@ -71,7 +73,6 @@ public class Register extends javax.swing.JFrame {
         setTitle("Register");
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(600, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -119,7 +120,7 @@ public class Register extends javax.swing.JFrame {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 100, -1));
+        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 110, 50));
 
         pass2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,13 +131,13 @@ public class Register extends javax.swing.JFrame {
 
         jToggleButton2.setBackground(new java.awt.Color(0, 204, 0));
         jToggleButton2.setFont(new java.awt.Font("SanamDeklenchaya", 1, 18)); // NOI18N
-        jToggleButton2.setText("Confirm");
+        jToggleButton2.setText("Register");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, -1, -1));
+        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 130, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bg-blue.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
@@ -170,10 +171,21 @@ public class Register extends javax.swing.JFrame {
         new Lobby().show();
         }else{    
         }*/
-      if (ox.insertUser(user.getText(), pass.getText(), pass2.getText())){
-        setVisible(false);
-        new Lobby().show();
-      }
+        if (regis.checkUser(user.getText())){
+            if (regis.checkLengthUser(user.getText()) && regis.checkLengthPassword(pass.getText())){
+                if (regis.checkPassword(pass.getText(), pass2.getText())){
+                    regis.insertUser(user.getText(), pass.getText(), pass2.getText());
+                    setVisible(false);
+                    new Lobby().show();
+                }else{
+                     JOptionPane.showMessageDialog(null,"กรุณาตรวจสอบข้อมูลใหม่");
+                }
+            }else{
+                 JOptionPane.showMessageDialog(null,"กรุณาตรวจสอบข้อมูลใหม่");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"มีการใช้ Username นี้แล้วในระบบ");
+        }
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 

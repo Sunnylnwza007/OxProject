@@ -69,12 +69,10 @@ public class OX {
         MongoCursor<Document> cursor = songs.find(findU).iterator();
           try {
             while (cursor.hasNext()) {
-                Document doc = cursor.next();
-                user = user;
-                count++;
+               Document doc = cursor.next();
+               count++;
             }
-        } finally {
-            
+        } finally {  
         }
         if (count>0){
             return true;
