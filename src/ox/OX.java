@@ -36,17 +36,17 @@ import java.util.List;
  */
 public class OX {
 
-    MongoClientURI uri  = new MongoClientURI("mongodb://user01:user01@ds243212.mlab.com:43212/ox-project"); 
-    MongoClient client = new MongoClient(uri);
-    MongoDatabase db = client.getDatabase(uri.getDatabase());
-    BasicDBObject insert  = new BasicDBObject();
-    String user;
+    static MongoClientURI uri  = new MongoClientURI("mongodb://user01:user01@ds243212.mlab.com:43212/ox-project"); 
+    static MongoClient client = new MongoClient(uri);
+    static MongoDatabase db = client.getDatabase(uri.getDatabase());
+    static BasicDBObject insert  = new BasicDBObject();
+    static String user;
     
     
     /**
      * @param args the command line arguments
      */
-    public boolean insertUser(String user,String pass,String pass2){
+    static public boolean insertUser(String user,String pass,String pass2){
         if ((pass).equals(pass2) && (
             !user.equals("") && !pass.equals(""))){
             insert.put("username", user);

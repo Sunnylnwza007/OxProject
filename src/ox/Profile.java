@@ -5,6 +5,8 @@
  */
 package ox;
 
+import ox.Lobby.Lobby;
+
 /**
  *
  * @author Jutamas_Soiraya
